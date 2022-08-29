@@ -1,6 +1,7 @@
 package com.epam.mjc.io;
 
 import java.io.*;
+import java.util.logging.Logger;
 
 
 public class FileReader {
@@ -24,9 +25,9 @@ public class FileReader {
             }
             return parse(dataProfile);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new FileNotExist(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileReadingException(e);
         }
     }
 
