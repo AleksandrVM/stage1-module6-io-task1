@@ -19,13 +19,12 @@ public class FileReader {
             throw new FileFormatException(file.getAbsolutePath() + " is empty.");
 
         try (BufferedReader fileReader = new BufferedReader(new java.io.FileReader(file))) {
-            String dataProfile = "";
+            StringBuilder dataProfile = new StringBuilder();
             String line = null;
             while ((line = fileReader.readLine()) != null) {
-                dataProfile += line;
-                dataProfile += NEW_LINE;
+                dataProfile.append(line).append(NEW_LINE);
             }
-            return parse(dataProfile);
+            return parse(dataProfile.toString());
         } catch (FileNotFoundException e) {
             throw new FileNotExist(e);
         } catch (IOException e) {
